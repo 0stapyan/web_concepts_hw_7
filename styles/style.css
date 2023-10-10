@@ -1,0 +1,92 @@
+/* Set the background color for the whole page */
+body, html {
+    background-color: #EA5959;
+    height: 100%;
+    margin: 0;
+}
+
+/* Style the to-do list container */
+#app {
+    width: 100%;
+    height: 100%;
+    background-color: #E5E5E5;
+    padding: 60px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align items to the top */
+    align-items: center; /* Center horizontally */
+}
+
+/* Style the to-do list title */
+h1 {
+    font-size: 31px;
+    line-height: 37px;
+    margin-bottom: 20px; /* Add spacing between title and items */
+}
+
+/* Style the input field for adding new tasks */
+#newTask {
+    width: 100%;
+    height: 47px;
+    margin-bottom: 10px; /* Add spacing between input and task list */
+    padding: 10px; /* Add padding to input field */
+    border: none;
+    border-radius: 8px;
+    background-color: #F3F3F3;
+}
+
+/* Style the task list */
+#taskList {
+    list-style-type: none;
+    padding: 0; /* Remove default list padding */
+    width: 100%;
+}
+
+/* Style each to-do list item */
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center items */
+    margin-bottom: 10px;
+    padding: 10px; /* Add padding to each item */
+    background-color: #fff; /* White background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+}
+
+/* Style the completion checkbox */
+li input[type="checkbox"] {
+    margin-right: 10px; /* Add spacing between checkbox and text */
+}
+
+/* Style the task text */
+li span {
+    flex-grow: 1; /* Allow the text to grow to fill the remaining space */
+}
+
+/* Style the "Remove" button for each task */
+li button {
+    background: #EA5959;
+    border-radius: 5px;
+    height: 28px;
+    border: none;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Style the "Remove Completed" and "Remove All" buttons */
+#removeCompleted, #removeAll {
+    width: 150px;
+    height: 48px;
+    background: #EA5959;
+    border-radius: 10px;
+    border: none;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px; /* Add spacing between buttons and task list */
+}
