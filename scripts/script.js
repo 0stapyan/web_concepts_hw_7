@@ -30,15 +30,30 @@ document.getElementById("sortDesc").addEventListener("click", () => {
 });
 
 function saveToLocalStorage() {
-    // Save todos to local storage
     localStorage.setItem("todos", JSON.stringify(todoList));
 }
 
 function clearLocalStorage() {
-    // Clear todos and sorting preference from local storage
     localStorage.removeItem("todos");
     localStorage.removeItem("sortAsc");
     localStorage.removeItem("sortDesc");
+}
+
+function pickRandomTodo() {
+    if (todoList.length === 0) {
+        alert("No todos available.");
+        return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * todoList.length);
+
+    const selectedTodos = document.querySelectorAll('.active');
+    for (const selectedTodo of selectedTodos) {
+        selectedTodo.classList.remove('active');
+    }
+
+    const todoItem = document.querySelectorAll('li')[randomIndex];
+    todoItem.classList.add('active');
 }
 
 function renderToDoList() {
@@ -59,7 +74,7 @@ function renderToDoList() {
     sortedToDoList.forEach((task, index) => {
         const listItem = document.createElement("li");
 
-        const creationDateTime = new Date(task.createdAt).toLocaleString(); // Format creation date and time
+        const creationDateTime = new Date(task.createdAt).toLocaleString(); 
 
         if (task.completed) {
             listItem.innerHTML = `<input type="checkbox" checked>${task.text} (Created: ${creationDateTime}) <button onclick="removeTask(${index})">Remove</button>`;
@@ -102,7 +117,6 @@ function addTask(text) {
     };
     todoList.push(newTask);
 
-    // Save todos after adding a new task
     saveToLocalStorage();
 
     renderToDoList();
@@ -113,7 +127,6 @@ function removeTask(index) {
     if (confirm("Are you sure you want to remove this task?")) {
         todoList.splice(index, 1);
 
-        // Save todos after removing a task
         saveToLocalStorage();
 
         renderToDoList();
@@ -143,10 +156,14 @@ document.getElementById("newTask").addEventListener("keyup", (e) => {
 
 document.getElementById("clearStorage").addEventListener("click", () => {
     clearLocalStorage();
-    // Clear todos array in memory
     todoList = [];
     renderToDoList();
 });
+
+document.getElementById("pickTodo").addEventListener("click", () => {
+    pickRandomTodo();
+});
+
 
 
 document.getElementById("removeCompleted").addEventListener("click", removeCompletedTasks);

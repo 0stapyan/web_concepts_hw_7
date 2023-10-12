@@ -1,11 +1,9 @@
-/* Set the background color for the whole page */
 body, html {
     background-color: #EA5959;
     height: 100%;
     margin: 0;
 }
 
-/* Style the to-do list container */
 #app {
     width: 100%;
     height: 100%;
@@ -15,59 +13,57 @@ body, html {
     overflow-y: scroll;
     border-radius: 20px;
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: flex-start; /* Align items to the top */
-    align-items: center; /* Center horizontally */
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: center; 
 }
 
-/* Style the to-do list title */
 h1 {
     font-size: 31px;
     line-height: 37px;
-    margin-bottom: 20px; /* Add spacing between title and items */
+    margin-bottom: 20px; 
 }
 
-/* Style the input field for adding new tasks */
 #newTask {
     width: 100%;
     height: 47px;
-    margin-bottom: 10px; /* Add spacing between input and task list */
-    padding: 10px; /* Add padding to input field */
+    margin-bottom: 10px;
+    padding: 10px;
     border: none;
     border-radius: 8px;
     background-color: #F3F3F3;
 }
 
-/* Style the task list */
+
 #taskList {
     list-style-type: none;
-    padding: 0; /* Remove default list padding */
+    padding: 0; 
     width: 100%;
 }
 
-/* Style each to-do list item */
+
 li {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Vertically center items */
+    align-items: center; 
     margin-bottom: 10px;
-    padding: 10px; /* Add padding to each item */
-    background-color: #fff; /* White background for contrast */
+    padding: 10px; 
+    background-color: #fff; 
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow for depth */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
 }
 
-/* Style the completion checkbox */
+
 li input[type="checkbox"] {
-    margin-right: 10px; /* Add spacing between checkbox and text */
+    margin-right: 10px; 
 }
 
-/* Style the task text */
+
 li span {
-    flex-grow: 1; /* Allow the text to grow to fill the remaining space */
+    flex-grow: 1; 
 }
 
-/* Style the "Remove" button for each task */
+
 li button {
     background: #EA5959;
     border-radius: 5px;
@@ -78,8 +74,13 @@ li button {
     cursor: pointer;
 }
 
-/* Style the "Remove Completed" and "Remove All" buttons */
-#removeCompleted, #removeAll, #sortAsc, #sortDesc, #clearStorage {
+li.active {
+    background-color: #f9d019; 
+    font-weight: bold;
+}
+
+
+#removeCompleted, #removeAll, #sortAsc, #sortDesc, #clearStorage, #pickTodo {
     width: 150px;
     height: 48px;
     background: #EA5959;
@@ -88,5 +89,5 @@ li button {
     color: #fff;
     text-align: center;
     cursor: pointer;
-    margin-top: 10px; /* Add spacing between buttons and task list */
+    margin-top: 10px; 
 }
