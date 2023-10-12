@@ -1,7 +1,10 @@
-const todoList = [];
+const storedTodos = localStorage.getItem("todos");
+const storedSortAsc = localStorage.getItem("sortAsc");
+const storedSortDesc = localStorage.getItem("sortDesc");
 
-let sortAsc = false;
-let sortDesc = false;
+let todoList = storedTodos ? JSON.parse(storedTodos) : [];
+let sortAsc = storedSortAsc === "true";
+let sortDesc = storedSortDesc === "true";
 
 function toggleSorting(buttonId) {
     sortAsc = false;
@@ -11,6 +14,9 @@ function toggleSorting(buttonId) {
     } else if (buttonId === "sortDesc") {
         sortDesc = true;
     }
+
+    localStorage.setItem("sortAsc", sortAsc);
+    localStorage.setItem("sortDesc", sortDesc);
 }
 
 document.getElementById("sortAsc").addEventListener("click", () => {
@@ -22,6 +28,18 @@ document.getElementById("sortDesc").addEventListener("click", () => {
     toggleSorting("sortDesc");
     renderToDoList();
 });
+
+function saveToLocalStorage() {
+    // Save todos to local storage
+    localStorage.setItem("todos", JSON.stringify(todoList));
+}
+
+function clearLocalStorage() {
+    // Clear todos and sorting preference from local storage
+    localStorage.removeItem("todos");
+    localStorage.removeItem("sortAsc");
+    localStorage.removeItem("sortDesc");
+}
 
 function renderToDoList() {
     let sortedToDoList;
@@ -83,6 +101,10 @@ function addTask(text) {
         createdAt: new Date(),
     };
     todoList.push(newTask);
+
+    // Save todos after adding a new task
+    saveToLocalStorage();
+
     renderToDoList();
     document.getElementById("newTask").value = "";
 }
@@ -90,9 +112,14 @@ function addTask(text) {
 function removeTask(index) {
     if (confirm("Are you sure you want to remove this task?")) {
         todoList.splice(index, 1);
+
+        // Save todos after removing a task
+        saveToLocalStorage();
+
         renderToDoList();
     }
 }
+
 
 function removeCompletedTasks() {
     const updatedList = todoList.filter((task) => !task.completed);
@@ -113,6 +140,14 @@ document.getElementById("newTask").addEventListener("keyup", (e) => {
         addTask(e.target.value);
     }
 });
+
+document.getElementById("clearStorage").addEventListener("click", () => {
+    clearLocalStorage();
+    // Clear todos array in memory
+    todoList = [];
+    renderToDoList();
+});
+
 
 document.getElementById("removeCompleted").addEventListener("click", removeCompletedTasks);
 document.getElementById("removeAll").addEventListener("click", removeAllTasks);
