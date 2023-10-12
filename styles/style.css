@@ -79,7 +79,7 @@ li button {
 }
 
 /* Style the "Remove Completed" and "Remove All" buttons */
-#removeCompleted, #removeAll {
+#removeCompleted, #removeAll, #sortAsc, #sortDesc {
     width: 150px;
     height: 48px;
     background: #EA5959;

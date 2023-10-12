@@ -1,7 +1,38 @@
 const todoList = [];
 
+let sortAsc = false;
+let sortDesc = false;
+
+function toggleSorting(buttonId) {
+    sortAsc = false;
+    sortDesc = false;
+    if (buttonId === "sortAsc") {
+        sortAsc = true;
+    } else if (buttonId === "sortDesc") {
+        sortDesc = true;
+    }
+}
+
+document.getElementById("sortAsc").addEventListener("click", () => {
+    toggleSorting("sortAsc");
+    renderToDoList();
+});
+
+document.getElementById("sortDesc").addEventListener("click", () => {
+    toggleSorting("sortDesc");
+    renderToDoList();
+});
+
 function renderToDoList() {
-    const sortedToDoList = todoList.sort((a, b) => b.createdAt - a.createdAt);
+    let sortedToDoList;
+    
+    if (sortAsc) {
+        sortedToDoList = todoList.sort((a, b) => a.createdAt - b.createdAt);
+    } else if (sortDesc) {
+        sortedToDoList = todoList.sort((a, b) => b.createdAt - a.createdAt);
+    } else {
+        sortedToDoList = todoList.sort((a, b) => b.createdAt - a.createdAt);
+    }
 
     const taskListElement = document.getElementById("taskList");
 
